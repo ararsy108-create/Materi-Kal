@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komputasi Aljabar Linear</title>
+    <link rel="stylesheet" href="style.css">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <section id="spl.html">
+        <div class="container">
+            <aside class="sidebar">
+                <div class="profile-card">
+                    <img src="c:\Users\user\Downloads\profil portofolio.jpeg" alt="Foto Profil" class="profile-img">
+                </div>
+                
+                <div class="search-box">
+                    <input type="text" placeholder="Search">
+                </div>
+
+                <nav class="nav-menu">
+                    <a href="index.html" class="nav-title">Komputasi Aljabar Linear</a>
+                    <a href="spl.html" class="active">SISTEM PERSAMAAN LINIER</a>
+                    <a href="j-awal.html" class="active">TUGAS AWAL</a>
+                    <a href="j-gaussian.html" class="active">ELIMINASI GAUSSIAN</a>
+                    <a href="invers matriks.html">MENCARI A INVERS MATRIX</a>
+                    <a href="j-determinan.html">HITUNG DETERMINAN MATRIX DENGAN RUMUS EKSPANSI BARIS</a>
+                    <a href="transformasi.html">TUGAS TRANSFORMASI MATRIX</a>
+                    <a href="transformasi2.html">TRANSFORMASI MATRIX MENDEKATI SUMBU X</a>
+                    <a href="matriks 4.htm">MEMBUAT MATRIX 4*4 CARI DEKOMPOSISI QR</a>
+                    <a href="svd.html" class="active">SVD</a>
+                </nav>
+            </aside>
+
+            <main class="main-content">
+                <div class="content-body">
+                    <br>
+                    <br>
+                    <h1>SISTEM PERSAMAAN LINIER</h1>
+                    <br>
+                    <p>Sistem Persamaan Linier (SPL) adalah kumpulan dua atau lebih persamaan linier yang memiliki variabel yang sama dan harus dipenuhi secara bersamaan. Artinya, kita mencari nilai variabel yang membuat semua persamaan dalam sistem tersebut benar sekaligus.</p>
+                    <br>
+                    <h3>Bentuk Umum</h3>
+                    <br>
+                    <p>Untuk dua variabel:
+                        <br>
+                        <br>\(\begin{cases}
+                        a_1x + b_1y = c_1 \\
+                        a_2x + b_2y = c_2
+                        \end{cases}\)
+                    </p>
+                    <br>
+                    <p>Untuk bentuk umum dengan banyak variabel:
+                        <br>
+                        <br>\(a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1\)
+                        <br>\(a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2\)
+                        <br>\(\vdots\)
+                        <br>\(a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m\)
+                    </p>
+                    <br>
+                    <br>
+                    <h3>Tujuan Sistem Persamaan Linier</h3>
+                    <br>
+                    <p>Menentukan nilai variabel \(x_1, x_2, \ldots, x_n\) yang memenuhi semua persamaan secara bersamaan.</p>
+                    <br>
+                    <br>
+                    <h3>Interpretasi Geometri</h3>
+                    <br>
+                    <ul>
+                        <li>Sistem Persamaan Linier 2 variabel → perpotongan dua garis</li>
+                        <li>Sistem Persamaan Linier 3 variabel → perpotongan tiga bidang</li>
+                        <li>Jika garis/bidang berpotongan di satu titik → solusi tunggal</li>
+                        <li>Jika sejajar → tidak ada solusi</li>
+                        <li>Jika berimpit → tak hingga solusi</li>
+                    </ul>
+                    <br>
+                    <br>
+                    <h3>Metode Penyelesaian</h3>
+                    <br>
+                    <ul>Beberapa metode yang digunakan untuk menyelesaikan SPL:
+                        <li>Metode Substitusi</li>
+                        <li>Metode Eliminasi</li>
+                        <li>Metode Grafik</li>
+                        <li>Metode Matriks (Invers, OBE/Gauss, Gauss-Jordan)</li>
+                    </ul>
+                    <br>
+                    <br>
+                    <h3>Representasi Matriks</h3>
+                    <br>
+                    <p>SPL dapat ditulis dalam bentuk matriks:</p>
+                    <p>\(A \cdot X = B\)</p>
+                    <p>dengan:
+                    <br>\(A\) = matriks koefisien
+                    <br>\(X\) = vektor variabel
+                    <br>\(B\) = vektor konstanta</p>
+                    <br>
+                    <br>
+                    <h3>Kesimpulan singkat</h3>
+                    <br>
+                    <p>Sistem Persamaan Linier adalah sekumpulan persamaan linier yang diselesaikan secara simultan untuk menemukan nilai variabel yang memenuhi seluruh persamaan tersebut, baik secara aljabar maupun geometris.</p>
+                    <br>
+                    <br>
+                <h3>2.1  Definisi Operasi Baris Elementer pada Matriks</h3>
+                <br>
+                <ol>Operasi baris elementer adalah salah satu dari tiga jenis operasi matriks berikut.
+                <br>Misalkan \( A \) adalah matriks berukuran \( m \times n \), dan nyatakan \( r_i \) sebagai baris ke-\( i \) dari matriks \( A \).
+                    <li> Perkalian Skalar (Scalar Multiplication) Mengalikan suatu baris dengan bilangan tak nol \( c \neq 0 \), yaitu mengganti \( r_i \) dengan \( c r_i \).Artinya, semua elemen pada baris tersebut dikalikan dengan \( c \).</li>
+                    <li> Pertukaran Baris (Row Swap) Menukar dua baris pada matriks \( A \).</li>
+                    <li> Penjumlahan Baris (Row Addition) Menambahkan kelipatan suatu baris ke baris lainnya, yaitu mengganti \( r_i \) dengan \( r_i + c r_j \) untuk suatu \( c, i, \) dan \( j \).</li>
+                </ol>
+                <p>Proses mengubah suatu matriks menggunakan operasi baris elementer disebut <b>reduksi baris (row reduction)</b>.Dua matriks disebut <b>ekuivalen baris (row equivalent)</b> jika salah satunya dapat diperoleh dari yang lain melalui sejumlah hingga operasi baris elementer.</p>
+                <br>
+                <br>
+                <h3>2.2  Notasi Operasi Baris Elementer</h3>
+                <br>
+                <p>Notasi operasi elementer yang telah dibahas sebelumnya dengan mudah diterapkan pada operasi baris pada matriks. Ekspresi berikut:</p>
+                <p>\[
+                    A \xrightarrow{c r_i} B
+                    \qquad
+                    A \xrightarrow{r_i \leftrightarrow r_j} B
+                    \qquad
+                    A \xrightarrow{r_i + c r_j} B
+                \]</p>
+                <br>
+                <p>Menyatakan operasi yang masing-masing berarti: 
+                <br>- Mengganti baris \( r_i \) pada matriks \( A \) dengan \( c r_i \). 
+                <br>- Menukar baris \( r_i \) dan \( r_j \) pada matriks \( A \). 
+                <br>- Mengganti baris \( r_i \) pada matriks \( A \) dengan \( r_i + c r_j \).</p>
+                <p>Pada dasarnya, ini adalah suatu prosedur atau <b>algoritma</b> yang menerima matriks input \( A \) dan mereduksinya menjadi matriks \( B \) dalam bentuk eselon baris <b>row echelon form</b>. Penting untuk dicatat bahwa meskipun dalam bab ini eliminasi Gauss terutama digunakan untuk menyederhanakan dan menyelesaikan sistem persamaan linear, metode ini bukan satu-satunya penerapannya. Sesungguhnya, prosedur ini akan digunakan berulang kali dalam berbagai konteks dan untuk tujuan yang beragam. Eliminasi Gauss merupakan salah satu alat paling penting dalam aljabar linear. Di sini kita mengingatnya sebagai suatu prinsip resmi.</p>
+                <br>
+                <br>
+                <h3>2.3 Langkah-Langkah Menjalankan Operasi Baris Elementer</h3>
+                <br>
+                <p><b>Eliminasi Gauss (Gaussian elimination)</b> adalah algoritma yang dijelaskan di bawah ini. Metode ini menerima sebuah matriks \( A \) sebagai input dan menghasilkan matriks \( B \) yang ekuivalen baris dalam bentuk eselon baris <b>row echelon form</b>.</p>
+                <ol class="ol-navbar">Langkah-Langkah:
+                    <li class="li2-navbar">Temukan kolom paling kiri yang memiliki elemen tak nol, lalu lakukan pertukaran baris <b>row swap</b> untuk memindahkan baris yang memiliki elemen tak nol tersebut ke bagian paling atas matriks.</li>
+                    <li class="li2-navbar">Kalikan baris teratas yang baru dengan suatu skalar sehingga menghasilkan angka 1 utama <b>eading one</b>l pada baris tersebut. Sebut baris baru ini sebagai \( r \).</li>
+                    <li class="li2-navbar">Untuk setiap baris \( r_i \) di bawah \( r \), lakukan operasi baris dalam bentuk \( r_i + c r \) untuk mengubah semua elemen di bawah angka 1 utama pada baris \( r \) menjadi nol.</li>
+                    <li class="li2-navbar">Ulangi kembali dari Langkah 1, tetapi hanya diterapkan pada submatriks yang terdiri dari semua baris di bawah \( r \). Lanjutkan proses ini sampai matriks berada dalam bentuk eselon baris.</li>
+                </ol>
+                <br>
+                <br>
+                <h3>2.4 Contoh Proses Eliminasi Gauss</h3>
+                <br>
+                <p><b>Diberikan matriks:</b>
+                    \[
+                    \begin{bmatrix}
+                    0 & 0 & -2 & 0 & 7 & 12 \\
+                    2 & 4 & -10 & 6 & 12 & 28 \\
+                    2 & 4 & -5 & 6 & -5 & -1
+                    \end{bmatrix}
+                    \]
+
+                    <b>Langkah 1:</b> Tukar Baris 1 dan Baris 2
+                    \[
+                    r_1 \leftrightarrow r_2
+                    \]
+
+                    \[
+                    \begin{bmatrix}
+                    2 & 4 & -10 & 6 & 12 & 28 \\
+                    0 & 0 & -2 & 0 & 7 & 12 \\
+                    2 & 4 & -5 & 6 & -5 & -1
+                    \end{bmatrix}
+                    \]
+
+                    <b>Langkah 2:</b> Skala Baris 1
+                    \[
+                    \frac{1}{2} r_1
+                    \]
+
+                    \[
+                    \begin{bmatrix}
+                    1 & 2 & -5 & 3 & 6 & 14 \\
+                    0 & 0 & -2 & 0 & 7 & 12 \\
+                    2 & 4 & -5 & 6 & -5 & -1
+                    \end{bmatrix}
+                    \]
+
+                    <b>Langkah 3:</b> Eliminasi Elemen di Bawah Leading 1
+                    \[
+                    r_3 - 2r_1
+                    \]
+
+                    \[
+                    \begin{bmatrix}
+                    1 & 2 & -5 & 3 & 6 & 14 \\
+                    0 & 0 & -2 & 0 & 7 & 12 \\
+                    0 & 0 & 5 & 0 & -17 & -29
+                    \end{bmatrix}
+                    \]
+
+                    <p>Selesai untuk baris pertama</p>
+                    <p><b>Langkah 4:</b> Skala Baris 2
+                    \[
+                    -\frac{1}{2} r_2
+                    \]
+
+                    \[
+                    \begin{bmatrix}
+                    1 & 2 & -5 & 3 & 6 & 14 \\
+                    0 & 0 & 1 & 0 & -\frac{7}{2} & -6 \\
+                    0 & 0 & 5 & 0 & -17 & -29
+                    \end{bmatrix}
+                    \]
+
+                    <b>Langkah 5:</b> Eliminasi Elemen di Bawah Leading 1 Kedua
+                    \[
+                    r_3 + (-5) r_2
+                    \]
+
+                    \[
+                    \begin{bmatrix}
+                    1 & 2 & -5 & 3 & 6 & 14 \\
+                    0 & 0 & 1 & 0 & -\frac{7}{2} & -6 \\
+                    0 & 0 & 0 & 0 & \frac{1}{2} & 1
+                    \end{bmatrix}
+                    \]
+                    </p>
+                    <p>Selesai untuk baris kedua</p>
+                    <p><b>Langkah 6:</b> Skala Baris 3
+                    \[
+                    2 r_3
+                    \]
+
+                    \[
+                    \begin{bmatrix}
+                    1 & 2 & -5 & 3 & 6 & 14 \\
+                    0 & 0 & 1 & 0 & -\frac{7}{2} & -6 \\
+                    0 & 0 & 0 & 0 & 1 & 2
+                    \end{bmatrix}
+                    \]</p>
+                    <br>
+                    <br>
+                    <h3>Tampilan Dalam Code Python</h3>
+                    <br>
+                    <br>
+            <h4>Solusi tunggal</h4>
+            <br>
+            <p>Sistem persamaan linier yaitu kumpulan dari dua atau lebih persamaan linier dengan variabel yang sama. Tujuan utama: menemukan nilai variabel yang memenuhi semua persamaan secara bersamaan.</p>
+            <h3>\(x + y = 5\)<br>
+                \(2x - y = 1\)</h3>
+            <pre><code>
+                import numpy as np
+
+                def solve_spl(matrix):
+                    A = np.array(matrix, dtype=float)
+                    n = len(A)
+
+                    for i in range(n):
+                        # Pivot
+                        if A[i][i] == 0:
+                            for j in range(i+1, n):
+                                if A[j][i] != 0:
+                                    A[[i, j]] = A[[j, i]]
+                                    break
+
+                        # Normalisasi pivot jadi 1
+                        A[i] = A[i] / A[i][i]
+
+                        # Eliminasi bawah
+                        for j in range(i+1, n):
+                            A[j] = A[j] - A[j][i] * A[i]
+
+                    # Back substitution
+                    x = np.zeros(n)
+                    for i in range(n-1, -1, -1):
+                        x[i] = A[i][-1] - sum(A[i][j] * x[j] for j in range(i+1, n))
+
+                    return x
+
+                # Contoh penggunaan
+                matrix = np.array([[1, 1, 5],
+                                [2, -1, 1]])
+
+                hasil = solve_spl(matrix)
+                print("x + y = 5\n2x - y = 1")
+                print(f"bentuk matriksnya yaitu \n{matrix}")
+                print("Solusi:", hasil)
+            </code></pre>
+            <br>
+            <br>
+            <h3>Output</h3>
+            <br>
+            <p>Sistem Persamaan:</p>
+            <p>\(x + y = 5\) <br>
+                \(2x - y = 1\)</p>
+            <p>Bentuk Matriks:</p>
+            <p>\[
+                \left[
+                \begin{array}{cc|c}
+                1 & 1 & 5 \\
+                2 & -1 & 1
+                \end{array}
+                \right]
+                \]
+            </p>
+            <p>Solusi:</p>
+            <p>\[
+                (x, y) = (2, 3)
+                \]</p>
+
+            <br>
+            <br>
+            <h3>Tampilan Dalam Code Python</h3>
+            <br>
+            <br>
+            <h4>Solusi Banyak</h4>
+            <br>
+            <p>\[
+                \begin{cases}
+                x + y + z = 6 \\
+                2x + 2y + 2z = 12 \\
+                3x + 3y + 3z = 18
+                \end{cases}
+                \]</p>
+            <pre><code>
+                import numpy as np
+
+                def spl_solusi_banyak_dengan_langkah():
+                    # Matriks augmented
+                    A = np.array([
+                        [1, 1, 1, 6],
+                        [2, 2, 2, 12],
+                        [3, 3, 3, 18]
+                    ], dtype=float)
+
+                    print("LANGKAH 0: Matriks Augmented Awal")
+                    print(A)
+                    print("-" * 40)
+
+                    # =========================
+                    # Langkah 1: R2 -> R2 - 2R1
+                    # =========================
+                    print("LANGKAH 1: R2 → R2 - 2R1")
+                    A[1] = A[1] - 2 * A[0]
+                    print(A)
+                    print("-" * 40)
+
+                    # =========================
+                    # Langkah 2: R3 -> R3 - 3R1
+                    # =========================
+                    print("LANGKAH 2: R3 → R3 - 3R1")
+                    A[2] = A[2] - 3 * A[0]
+                    print(A)
+                    print("-" * 40)
+
+                    # =========================
+                    # Kesimpulan
+                    # =========================
+                    print("KESIMPULAN:")
+                    print("Terdapat dua baris nol.")
+                    print("Artinya hanya ada satu persamaan independen.")
+                    print("Sistem memiliki SOLUSI BANYAK (tak hingga).")
+                    print()
+
+                    print("Persamaan tersisa:")
+                    print("x + y + z = 6")
+                    print()
+
+                    print("Misalkan:")
+                    print("y = s")
+                    print("z = t")
+                    print()
+
+                    print("Maka solusi umum:")
+                    print("x = 6 - s - t")
+                    print("y = s")
+                    print("z = t")
+
+                # Panggil fungsi
+                spl_solusi_banyak_dengan_langkah()
+            </code></pre>
+            <br>
+            <br>
+            <h3>Output:</h3>
+            <br>
+            <p>Proses Eliminasi Gauss <br>
+                <b>Langkah 1</b>  
+                \( R_2 \rightarrow R_2 - 2R_1 \)
+
+                \[
+                \begin{bmatrix}
+                1 & 1 & 1 & 6 \\
+                0 & 0 & 0 & 0 \\
+                3 & 3 & 3 & 18
+                \end{bmatrix}
+                \]
+
+                <b>Langkah 2</b>
+                \( R_3 \rightarrow R_3 - 3R_1 \)
+
+                \[
+                \begin{bmatrix}
+                1 & 1 & 1 & 6 \\
+                0 & 0 & 0 & 0 \\
+                0 & 0 & 0 & 0
+                \end{bmatrix}
+                \]
+
+                <b>Kesimpulan</b><br>
+
+                Terdapat dua baris nol.<br>  
+                Artinya hanya ada satu persamaan independen.<br>  
+
+                Sistem memiliki <b>solusi banyak (tak hingga)</b>.
+           
+                \[
+                x + y + z = 6
+                \]<br>
+
+                Misalkan<br>
+
+                \[
+                y = s
+                \]
+                \[
+                z = t
+                \]
+
+                Maka Solusi Umum
+
+                \[
+                x = 6 - s - t
+                \]
+
+                \[
+                y = s
+                \]
+
+                \[
+                z = t
+                \]
+
+                dengan \( s, t \in \mathbb{R} \).</p>
+
+            <br>
+            <br>
+            <h3>Tampilan Dalam Code Python</h3>
+            <br>
+            <h4>Tidak Ada Solusi</h4>
+            <br>
+            <p>\[
+                \left\{
+                \begin{aligned}
+                x + y + z &= 6 \\
+                2x + 2y + 2z &= 12 \\
+                x + y + z &= 10
+                \end{aligned}
+                \right.
+                \]</p>
+            <p>Persamaan Tersisa<br>
+            <pre><code>
+                import numpy as np
+
+                def spl_tidak_ada_solusi_dengan_langkah():
+                    # Matriks augmented
+                    A = np.array([
+                        [1, 1, 1, 6],
+                        [2, 2, 2, 12],
+                        [1, 1, 1, 10]
+                    ], dtype=float)
+
+                    print("LANGKAH 0: Matriks Augmented Awal")
+                    print(A)
+                    print("-" * 50)
+
+                    # =========================
+                    # Langkah 1: R2 -> R2 - 2R1
+                    # =========================
+                    print("LANGKAH 1: R2 → R2 - 2R1")
+                    A[1] = A[1] - 2 * A[0]
+                    print(A)
+                    print("-" * 50)
+
+                    # =========================
+                    # Langkah 2: R3 -> R3 - R1
+                    # =========================
+                    print("LANGKAH 2: R3 → R3 - R1")
+                    A[2] = A[2] - A[0]
+                    print(A)
+                    print("-" * 50)
+
+                    # =========================
+                    # Kesimpulan
+                    # =========================
+                    print("KESIMPULAN:")
+                    print("Muncul baris:")
+                    print(A[2])
+                    print()
+                    print("Artinya:")
+                    print("0x + 0y + 0z = 4")
+                    print("0 = 4 (Kontradiksi)")
+                    print()
+                    print("Maka sistem TIDAK MEMILIKI SOLUSI.")
+
+                # Panggil fungsi
+                spl_tidak_ada_solusi_dengan_langkah()
+            </code></pre>
+            <br>
+            <br>
+            <h3>Output:</h3>
+            <p><b>LANGKAH 0:</b> Matriks Augmented Awal
+                
+                \[
+                \left[
+                \begin{array}{ccc|c}
+                1 & 1 & 1 & 6 \\
+                2 & 2 & 2 & 12 \\
+                1 & 1 & 1 & 10
+                \end{array}
+                \right]
+                \]
+
+                <b>LANGKAH 1</b>  
+                \( R_2 \rightarrow R_2 - 2R_1 \)
+
+                \[
+                \left[
+                \begin{array}{ccc|c}
+                1 & 1 & 1 & 6 \\
+                0 & 0 & 0 & 0 \\
+                1 & 1 & 1 & 10
+                \end{array}
+                \right]
+                \]
+
+                <b>LANGKAH 2</b>  
+                \( R_3 \rightarrow R_3 - R_1 \)
+
+                \[
+                \left[
+                \begin{array}{ccc|c}
+                1 & 1 & 1 & 6 \\
+                0 & 0 & 0 & 0 \\
+                0 & 0 & 0 & 4
+                \end{array}
+                \right]
+                \]
+
+                <b>Kesimpulan</b><br>
+
+                Muncul baris:
+
+                \[
+                [\,0 \quad 0 \quad 0 \mid 4\,]
+                \]
+
+                Artinya:
+
+                \[
+                0x + 0y + 0z = 4
+                \]
+
+                \[
+                0 = 4
+                \]
+
+                Ini adalah <b>kontradiksi</b>.
+
+                <br>Maka sistem <b>tidak memiliki solusi</b>.</p>
+                <br>
+                <br>
+                <h3>Visualisasi geogebra</h3>
+                <br>
+                <p>Visualisasi GeoGebra dengan Solusi Tunggal</p>
+                <iframe class="iframe-navbar" 
+                src="https://www.geogebra.org/calculator/rk7sxpre"
+                allowfullscreen>
+                </iframe>
+
+                <h3>Visualisasi geogebra</h3>
+                <br>
+                <p>Visualisasi GeoGebra dengan Solusi Banyak</p>
+                <iframe class="iframe-navbar" 
+                src="https://www.geogebra.org/calculator/hrcethqv"
+                allowfullscreen>
+                </iframe>
+
+                <h3>Visualisasi geogebra</h3>
+                <br>
+                <p>Visualisasi GeoGebra dengan Tidak Ada Solusi</p>
+                <iframe class="iframe-navbar" 
+                src="https://www.geogebra.org/calculator/uevzvmk9"
+                allowfullscreen>
+                </iframe>
+                    <div class="next-link">
+                        <a href="j-awal.html">Next &rarr; <span>tUGAS AWAL</span></a>
+                    </div>
+                </div>
+    </section>            
+            <footer>
+                <hr class="footer-line">
+                <p>&copy; Copyright 2026 - Nandita Rayyan Arsy Arrahma</p>
+            </footer>
+        </main>
+    </div>
+
+</body>
+</html>
